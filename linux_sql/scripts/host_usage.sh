@@ -20,12 +20,12 @@ memory_free=$(echo "$vmstat_mb" |  tail -1 | awk -v col="4" '{print $col}')
 cpu_idle=$(echo "$vmstat_mb" | tail -1 | awk -v col="15" '{print $col}')
 cpu_kernel=$(echo "$vmstat_mb" | tail -1 | awk -v col="1" '{print $col}')
 disk_io=$(vmstat -d | tail -1 | awk -v col="10" '{print $col}')
-disk_available=$(df -BM --output=size --total| awk 'END {print $1}')
+disk_available=$(df -BM --output=size --total| awk 'END {print $1}' | sed s/M//)
 timestamp=$(date '+%Y-%m-%d %H:%M:%S')
 
 # queries
 host_id="(SELECT id FROM host_info WHERE hostname='$hostname')";
-insert_stmt="INSERT INTO host_usage(timestamp,  host_id, memory_free, cpu_idle, cpu_kernel, disk_io, disk_available) VALUES('$timestamp', '$host_id', '$memory_free', '$cpu_idle', '$cpu_kernel', '$disk_io', '$disk_available');"
+insert_stmt="INSERT INTO host_usage(timestamp,  host_id, memory_free, cpu_idle, cpu_kernel, disk_io, disk_available) VALUES('$timestamp', $host_id, $memory_free, '$cpu_idle', '$cpu_kernel', $disk_io, $disk_available);"
 
 
 export PGPASSWORD=$psql_password
