@@ -36,7 +36,7 @@ to containerize and run the PostgreSQL database, ensuring a consistent and isola
 control, I adopted the Gitflow methodology and used GitHub to track code changes and manage branches systematically.
 
 ## Architecture
-![Project Architecture](/assets/LinuxClusterArchitecture.png)
+![Project Architecture](./assets/LinuxClusterArchitecture.png)
 
 ## Scripts
 <ul>
