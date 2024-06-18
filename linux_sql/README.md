@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 # Linux Cluster Monitoring Agent
-=======
->>>>>>> feature/profile
 
 ## Introduction
 The Jarvis Linux Cluster Administration (LCA) team oversees a small network of servers, all 
@@ -77,11 +74,6 @@ as how much of the CPU is idle, how much memory is free, how much is available o
 The cron table in Linux is a tool that can run processes and tasks repeatedly. In this case, we are using the
 cron tool to run our host usage script every minute.
 
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> feature/profile
 </ul>
 
 ## Database Modeling
@@ -105,8 +97,8 @@ was used to run PostgreSQL and GitHub was used as a version control.
     <li>Adding GUI to read information</li>
     <li>Running the application in docker (make it more accessible )</li>
     <li>Make the application for all operating systems (not just Linux)</li>
-<<<<<<< HEAD
+
 </ul>
-=======
+
 </ul>
->>>>>>> feature/profile
+
