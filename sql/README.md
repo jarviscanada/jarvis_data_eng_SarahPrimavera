@@ -4,6 +4,7 @@
 
 ###### Table Setup (DDL)
 
+```sql
 create table cd.facilities(
   facid integer not null, 
   name character varying(200) not null, 
@@ -35,6 +36,7 @@ create table cd.bookings(
   constraint bookings_fk_facid FOREIGN KEY (facid) REFERENCES cd.facilities(facid), 
   constraint bookings_fk_memid FOREIGN KEY (memid) REFERENCES cd.members(memid), 
   );
+```
 
 ###### Question 1: Insert data into table
 
