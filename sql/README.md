@@ -1,5 +1,7 @@
 # Introduction
 
+SQL is a powerful and essential tool when it comes to working with databases. It allows us to interact with data in a relational database by executing different types of queries. These queries allow us to perform tasks such as creating data, reading data, updating data, and deleting data. Understanding SQL is crucial for database management, data analysis, and back-end development. This project equipped me with the knowledge and skills to work with SQL in various real-world scenarios.
+
 # SQL Queries
 
 ###### Table Setup (DDL)
