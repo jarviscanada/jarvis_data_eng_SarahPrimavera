@@ -23,6 +23,11 @@
       "description": "Utilizes bash scripts, psql databases, and docker to track hardware usage of a machine every minute.",
       "git_url": "/linux_sql",
       "name": "Cluster Monitor"
+    },
+    {
+      "description": "Utilizes real-world scenarios to practice various types of SQL queries.",
+      "git_url": "/sql",
+      "name": "RDBMS and SQL"
     }
   ],
   "name": "Sarah Primavera",

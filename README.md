@@ -17,6 +17,8 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_SarahPrima
 
 **Cluster Monitor** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/master/linux_sql)]: Utilizes bash scripts, psql databases, and docker to track hardware usage of a machine every minute.
 
+**RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/master/sql)]: Utilizes real-world scenarios to practice various types of SQL queries.
+
 
 ## Highlighted Projects
 **Closet Master**: Developed wardrobe management application to track items in closet select outfits. Utilizes technologies such as Flutter and Firebase Cloud for the full stack web application.
