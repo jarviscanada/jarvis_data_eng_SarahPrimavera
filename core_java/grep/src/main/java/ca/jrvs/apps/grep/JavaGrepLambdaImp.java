@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,14 +39,12 @@ public class JavaGrepLambdaImp extends JavaGrepImplementation implements
 
   @Override
   public void process() throws IOException {
-    List<String> linesToWrite = new ArrayList<>();
-    for (File myfile: listFiles(getRootPath())){
-      for (String line: readLines(myfile)){
-        if (containsPattern(line)){
-          linesToWrite.add(line);
-        }
-      }
-    }
+    List<String> linesToWrite = listFiles(getRootPath()).stream()
+        .flatMap(file -> {
+          return readLines(file).stream();
+        })
+        .filter(this::containsPattern)
+        .collect(Collectors.toList());
     writeToFile(linesToWrite);
   }
 
