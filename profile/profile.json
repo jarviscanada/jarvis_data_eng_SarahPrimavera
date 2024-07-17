@@ -23,6 +23,11 @@
       "description": "Utilizes bash scripts, psql databases, and docker to track hardware usage of a machine every minute.",
       "git_url": "/linux_sql",
       "name": "Cluster Monitor"
+    },
+    {
+      "description": "Utilizes core Java, IntelliJ, Maven, and Docker to imitate the functionality of the Linux grep command.",
+      "git_url": "core_java/grep",
+      "name": "Java Grep App"
     }
   ],
   "name": "Sarah Primavera",
