@@ -56,6 +56,11 @@ jarvis_projects:
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: Utilizes core Java, IntelliJ, Maven, and Docker to imitate the functionality of the Linux grep command.
 
+  - name: "RDBMS and SQL"
+    git_url: "/sql"
+    # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
+    # The project description must start with an action verb (https://bit.ly/3guO98u)
+    description: Utilizes real-world scenarios to practice various types of SQL queries.  
 
 # List of personal or academic projects
 # Feel free to add more projects
