@@ -17,6 +17,7 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_SarahPrima
 
 **Cluster Monitor** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/master/linux_sql)]: Utilizes bash scripts, psql databases, and docker to track hardware usage of a machine every minute.
 
+**Java Grep App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/mastercore_java/grep)]: Utilizes core Java, IntelliJ, Maven, and Docker to imitate the functionality of the Linux grep command.
 **RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/master/sql)]: Utilizes real-world scenarios to practice various types of SQL queries.
 
 
