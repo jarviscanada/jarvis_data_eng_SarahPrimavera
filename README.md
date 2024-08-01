@@ -47,3 +47,5 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_SarahPrima
 ## Miscellaneous
 - Name of course: NodeJs Tutorial and Projects Course
 - Technologies covered: ExpressJS, MongoDB, Mongoose, JWT
+- On the weekends I am a dance teacher in various styles such as tap, contemporary, jazz and hip hop.
+- I love to travel. Last year I did a 3 week Europe trip with a close friend.
