@@ -26,18 +26,17 @@ public class QuoteService_IntTest {
     quoteDAO.setC(connection);
     quoteHttpHelper = new QuoteHttpHelper();
     quoteHttpHelper.setClient(new OkHttpClient());
-    quoteHttpHelper.setApiKey("81d6d60d8fmsh196633f8e7c4c1cp1d6eccjsn074b80ad1373");
+    quoteHttpHelper.setApiKey(System.getenv("StockApiKey"));
     quoteService = new QuoteService();
     quoteService.setDao(quoteDAO);
     quoteService.setHttpHelper(quoteHttpHelper);
-    quoteService.setDcm(dcm);
 
   }
 
   @After
   public void tearDown() throws Exception {
-    if (connection != null && !connection.isClosed()) {
-      connection.close();
+    if (quoteDAO.getC() != null && !quoteDAO.getC().isClosed()) {
+      quoteDAO.getC().close();
     }
   }
 

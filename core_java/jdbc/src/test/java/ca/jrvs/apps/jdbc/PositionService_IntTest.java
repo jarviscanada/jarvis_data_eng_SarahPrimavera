@@ -25,7 +25,6 @@ public class PositionService_IntTest {
     positionDAO.setC(connection);
     positionService = new PositionService();
     positionService.setDao(positionDAO);
-    positionService.setDcm(dcm);
   }
 
   @After

@@ -1,0 +1,7 @@
+db-class:dbclassgoeshere
+server:localhost
+database:databasename
+port:5432
+username:username
+password:password
+api-key:apikeygoeshere

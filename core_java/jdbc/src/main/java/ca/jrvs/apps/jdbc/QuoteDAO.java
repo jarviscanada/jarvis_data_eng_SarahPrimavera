@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class QuoteDAO implements CrudDao<Quote, String>{
 
@@ -24,19 +26,25 @@ public class QuoteDAO implements CrudDao<Quote, String>{
 
   private static final String INSERT = "INSERT INTO quote (symbol, open, high, low, price, volume, latest_trading_day, previous_close, change, change_percent, timestamp) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
+  private static final Logger loggerInfo = LogManager.getLogger("StockLogInfo");
+  private static final Logger loggerError = LogManager.getLogger("StockLogError");
+
   @Override
   public Quote save(Quote entity) throws IllegalArgumentException {
     //find entity by id, if is present/exists update, if not create the quote
     Quote quoteSaved;
     if(findById(entity.getTicker()).isPresent()){
+      loggerInfo.info("updating already existing quote");
       quoteSaved = update(entity);
     }else{
+      loggerInfo.info("creating quote");
       quoteSaved = create(entity);
     }
     return quoteSaved;
   }
 
   public Quote update(Quote entity) {
+    loggerInfo.info("Preparing statement to update");
     try(PreparedStatement statement = this.c.prepareStatement(UPDATE);){
       statement.setDouble(1, entity.getOpen());
       statement.setDouble(2, entity.getHigh());
@@ -49,15 +57,17 @@ public class QuoteDAO implements CrudDao<Quote, String>{
       statement.setString(9, entity.getChangePercent());
       statement.setTimestamp(10, entity.getTimestamp());
       statement.setString(11, entity.getTicker());
+      loggerInfo.info("executing prepared statement to update");
       statement.execute();
       return entity;
     }catch (SQLException e){
-      e.printStackTrace();
+      loggerError.error("Quote DAO Update Error: Unable to process because ", e);
       throw new RuntimeException(e);
     }
   }
 
   public Quote create(Quote entity) {
+    loggerInfo.info("Preparing statement to create");
     try(PreparedStatement statement = this.c.prepareStatement(INSERT);){
       statement.setString(1, entity.getTicker());
       statement.setDouble(2,entity.getOpen());
@@ -70,10 +80,11 @@ public class QuoteDAO implements CrudDao<Quote, String>{
       statement.setDouble(9,entity.getChange());
       statement.setString(10,entity.getChangePercent());
       statement.setTimestamp(11,entity.getTimestamp());
+      loggerInfo.info("executing prepared statement to create");
       statement.execute();
       return entity;
     }catch(SQLException e){
-      e.printStackTrace();
+      loggerError.error("Quote DAO Create Error: Unable to process because ", e);
       throw new RuntimeException(e);
     }
   }
@@ -81,8 +92,10 @@ public class QuoteDAO implements CrudDao<Quote, String>{
   @Override
   public Optional<Quote> findById(String s) throws IllegalArgumentException {
     Quote quote = new Quote();
+    loggerInfo.info("Preparing statement to find by id");
     try(PreparedStatement statement = this.c.prepareStatement(GET_ONE);){
       statement.setString(1, s);
+      loggerInfo.info("executing prepared statement to find by id");
       ResultSet rs = statement.executeQuery();
       while(rs.next()){
         quote.setTicker(rs.getString("symbol"));
@@ -98,7 +111,7 @@ public class QuoteDAO implements CrudDao<Quote, String>{
         quote.setTimestamp(rs.getTimestamp("timestamp"));
       }
     }catch(SQLException e){
-      e.printStackTrace();
+      loggerError.error("Quote DAO Find By Id Error: Unable to process because ", e);
       throw new RuntimeException(e);
     }
     return Optional.ofNullable(quote);
@@ -107,7 +120,9 @@ public class QuoteDAO implements CrudDao<Quote, String>{
   @Override
   public Iterable<Quote> findAll() {
     List<Quote> quotes = new ArrayList<>();
+    loggerInfo.info("Preparing statement to find all");
     try(PreparedStatement statement = this.c.prepareStatement(GET_ALL);){
+      loggerInfo.info("executing prepared statement to find all");
       ResultSet rs = statement.executeQuery();
       while(rs.next()){
         Quote quote = new Quote();
@@ -126,7 +141,7 @@ public class QuoteDAO implements CrudDao<Quote, String>{
         quotes.add(quote);
       }
     }catch(SQLException e){
-      e.printStackTrace();
+      loggerError.error("Quote DAO Find All Error: Unable to process because ", e);
       throw new RuntimeException(e);
     }
     return quotes;
@@ -134,21 +149,25 @@ public class QuoteDAO implements CrudDao<Quote, String>{
 
   @Override
   public void deleteById(String s) throws IllegalArgumentException {
+    loggerInfo.info("Preparing statement to delete by id");
     try(PreparedStatement statement = this.c.prepareStatement(DELETE_ONE);){
       statement.setString(1, s);
+      loggerInfo.info("executing prepared statement to delete by id");
       statement.execute();
     }catch(SQLException e){
-      e.printStackTrace();
+      loggerError.error("Quote DAO Delete By Id Error: Unable to process because ", e);
       throw new RuntimeException(e);
     }
   }
 
   @Override
   public void deleteAll() {
+    loggerInfo.info("Preparing statement to delete all");
     try(PreparedStatement statement = this.c.prepareStatement(DELETE_ALL);){
+      loggerInfo.info("executing prepared statement to delete all");
       statement.execute();
     }catch(SQLException e){
-      e.printStackTrace();
+      loggerError.error("Quote DAO Delete All Error: Unable to process because ", e);
       throw new RuntimeException(e);
     }
   }

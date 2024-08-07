@@ -7,14 +7,17 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import okhttp3.ResponseBody;
 
 public class QuoteHttpHelper {
 
   private String apiKey;
-//  "81d6d60d8fmsh196633f8e7c4c1cp1d6eccjsn074b80ad1373"
   private OkHttpClient client;
+  private static final Logger loggerInfo = LogManager.getLogger("StockLogInfo");
+  private static final Logger loggerError = LogManager.getLogger("StockLogError");
 
   /**
    * Fetch latest quote data from Alpha Vantage endpoint
@@ -23,12 +26,14 @@ public class QuoteHttpHelper {
    * @throws IllegalArgumentException - if no data was found for the given symbol
    */
   public Quote fetchQuoteInfo(String symbol) throws IllegalArgumentException{
+    loggerInfo.info("Building request to fetch quote info");
     Request request = new Request.Builder()
         .url("https://alpha-vantage.p.rapidapi.com/query?function=GLOBAL_QUOTE&symbol="+symbol+"&datatype=json")
         .header("X-RapidAPI-Key", apiKey)
         .header("X-RapidAPI-Host", "alpha-vantage.p.rapidapi.com")
         .get()
         .build();
+    loggerInfo.info("Sending request to fetch quote info");
     try(ResponseBody responseBody = client.newCall(request).execute().body()) {
       JSONObject jsonObject = new JSONObject(responseBody.string());
       JSONObject globalQuote = jsonObject.getJSONObject("Global Quote");
@@ -37,11 +42,11 @@ public class QuoteHttpHelper {
       quote.setTimestamp(new Timestamp(System.currentTimeMillis()));
       return quote;
     }catch (JsonMappingException e) {
-      e.printStackTrace();
+      loggerError.error("Quote Http Helper Json Mapping Error: Unable to process because ", e);
     } catch (JsonProcessingException e) {
-      e.printStackTrace();
+      loggerError.error("Quote Http Helper Json Processing Error: Unable to process because ", e);
     } catch (IOException e) {
-      e.printStackTrace();
+      loggerError.error("Quote Http Helper IO Error: Unable to process because ", e);
     }
     return null;
   }

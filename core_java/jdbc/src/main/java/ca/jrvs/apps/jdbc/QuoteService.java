@@ -1,15 +1,16 @@
 package ca.jrvs.apps.jdbc;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
-import okhttp3.OkHttpClient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class QuoteService {
 
   private QuoteDAO dao;
   private QuoteHttpHelper httpHelper;
-private DatabaseConnectionManager dcm;
+  private static final Logger loggerInfo = LogManager.getLogger("StockLogInfo");
+  private static final Logger loggerError = LogManager.getLogger("StockLogError");
 
   /**
    * Fetches latest quote data from endpoint
@@ -17,12 +18,8 @@ private DatabaseConnectionManager dcm;
    * @return Latest quote information or empty optional if ticker symbol not found
    */
   public Optional<Quote> fetchQuoteDataFromAPI(String ticker) throws SQLException {
-
-    //setting up connection to the database
-    Connection connection = dcm.getConnection();
-    dao.setC(connection);
-
     try{
+      loggerInfo.info("Starting the fetching");
       //fetching quote info
       Quote data = httpHelper.fetchQuoteInfo(ticker);
 
@@ -36,11 +33,7 @@ private DatabaseConnectionManager dcm;
       }
       return Optional.of(data);
     }catch (Exception e){
-      e.printStackTrace();
-    }finally {
-      if (connection != null && !connection.isClosed()) {
-        connection.close();
-      }
+      loggerError.error("Quote Service Fetch Data from API Error: Unable to process because ", e);
     }
     return Optional.empty();
   }
@@ -59,13 +52,5 @@ private DatabaseConnectionManager dcm;
 
   public void setHttpHelper(QuoteHttpHelper httpHelper) {
     this.httpHelper = httpHelper;
-  }
-
-  public DatabaseConnectionManager getDcm() {
-    return dcm;
-  }
-
-  public void setDcm(DatabaseConnectionManager dcm) {
-    this.dcm = dcm;
   }
 }

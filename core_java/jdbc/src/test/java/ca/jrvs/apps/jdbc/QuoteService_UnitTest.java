@@ -28,9 +28,9 @@ public class QuoteService_UnitTest {
     mockDcm = mock(DatabaseConnectionManager.class);
     mockConnection = mock(Connection.class);
     when(mockDcm.getConnection()).thenReturn(mockConnection);
+    mockDao.setC(mockConnection);
     quoteService = new QuoteService();
     quoteService.setDao(mockDao);
-    quoteService.setDcm(mockDcm);
     quoteService.setHttpHelper(mockHttpHelper);
 
   }
@@ -50,7 +50,6 @@ public class QuoteService_UnitTest {
     assertEquals(ticker, result.get().getTicker());
 
     verify(mockDao).save(quote);
-    verify(mockConnection).close();
   }
 
   @Test
@@ -66,7 +65,6 @@ public class QuoteService_UnitTest {
     assertFalse(result.isPresent());
 
     verify(mockDao, never()).save(any(Quote.class));
-    verify(mockConnection).close();
   }
 
   @Test
@@ -80,6 +78,5 @@ public class QuoteService_UnitTest {
     assertFalse(result.isPresent());
 
     verify(mockDao, never()).save(any(Quote.class));
-    verify(mockConnection).close();
   }
 }

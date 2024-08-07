@@ -31,7 +31,6 @@ public class PositionService_UnitTest {
     when(mockDcm.getConnection()).thenReturn(mockConnection);
     positionService = new PositionService();
     positionService.setDao(mockDao);
-    positionService.setDcm(mockDcm);
   }
 
   @Test
