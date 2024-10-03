@@ -30,6 +30,11 @@
       "name": "Java Grep App"
     },
     {
+      "description": "Connects to databse using JDBC to manage and retrieve stock market data through CRUD operations. Is a command-line tool built with Java and Maven, this demonstrates effective use of design patterns like DAO and Repository to ensure clean and maintainable code.",
+      "git_url": "core_java/jdbc",
+      "name": "Java Stock Quote App"
+    },
+    {
       "description": "Utilizes real-world scenarios to practice various types of SQL queries.",
       "git_url": "/sql",
       "name": "RDBMS and SQL"

@@ -19,6 +19,8 @@ Project source code: [https://github.com/jarviscanada/jarvis_data_eng_SarahPrima
 
 **Java Grep App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/mastercore_java/grep)]: Utilizes core Java, IntelliJ, Maven, and Docker to imitate the functionality of the Linux grep command.
 
+**Java Stock Quote App** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/mastercore_java/jdbc)]: Connects to databse using JDBC to manage and retrieve stock market data through CRUD operations. Is a command-line tool built with Java and Maven, this demonstrates effective use of design patterns like DAO and Repository to ensure clean and maintainable code.
+
 **RDBMS and SQL** [[GitHub](https://github.com/jarviscanada/jarvis_data_eng_SarahPrimavera/tree/master/sql)]: Utilizes real-world scenarios to practice various types of SQL queries.
 
 

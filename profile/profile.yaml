@@ -55,7 +55,9 @@ jarvis_projects:
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
     # The project description must start with an action verb (https://bit.ly/3guO98u)
     description: Utilizes core Java, IntelliJ, Maven, and Docker to imitate the functionality of the Linux grep command.
-
+  - name: "Java Stock Quote App"
+    git_url: "core_java/jdbc"
+    description: Connects to databse using JDBC to manage and retrieve stock market data through CRUD operations. Is a command-line tool built with Java and Maven, this demonstrates effective use of design patterns like DAO and Repository to ensure clean and maintainable code.
   - name: "RDBMS and SQL"
     git_url: "/sql"
     # The project description allows hiring managers to understand your project and technologies you used(e.g. programming languages, libraries, algorithms, hardware, tools, etc.).
